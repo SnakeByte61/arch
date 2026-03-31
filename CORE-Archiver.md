@@ -25,7 +25,7 @@ This document explains:
 ```
 ┌───────────────────────┐
 │ Service Bus Topic     │
-│  + Subscription        │
+│  + Subscription       │
 └─────────────┬─────────┘
               │ Trigger
               ▼
