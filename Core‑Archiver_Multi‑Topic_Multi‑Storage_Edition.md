@@ -100,21 +100,22 @@ ContainerNameGenerator.cs
 }
 
 
-Function Endpoints
-1. Kafka Small Usage Messages
+## Function Endpoints
+### 1. Kafka Small Usage Messages
 C#[Function("ArchiverTopicTrigger")][ServiceBusTrigger(    "sbt-css-rbp-kafka-bts-receive-small-usageresponse",    "bts-receive-small-usageresponse-archive",    Connection = "ServiceBusConnection")]Show more lines
-2. 620‑621 Messages
+
+### 2. 620‑621 Messages
 C#[Function("ArchiverTopicTrigger_620_621")][ServiceBusTrigger(    "620-621-Messages",    "archive-620-621",    Connection = "ServiceBusConnection")]Show more lines
 Each function uses its own BlobServiceClient (DI‑injected).
 
-Naming Strategy
-Blob Naming
+## Naming Strategy
+### Blob Naming
 <Guid>_<CorrelationId>_<topicPrefix>-archive.xml
 
-Container Naming
+### Container Naming
 <yyyyMMdd>-<riceId>-<topicPrefix>
 
-Topic Prefixes
+## Topic Prefixes
 
 
 
@@ -133,11 +134,12 @@ Topic Prefixes
 
 
 TopicPrefixKafka Small Usagekafka620–621 Messages620_621
-Example helper usage:
+
+### Example helper usage:
 C#new BlobNameGenerator(_logger, "620_621");new ContainerNameGenerator(_logger, "620_621");Show more lines
 
-Deployment
-Required Azure Resources
+## Deployment
+### Required Azure Resources
 
 Azure Service Bus (topics + subscriptions)
 Primary Storage Account
@@ -146,7 +148,7 @@ Azure Function App (.NET 8 isolated)
 Application Insights
 (Optional) Key Vault
 
-Recommended Practices
+## Recommended Practices
 
 Use Azure DevOps or GitHub Actions CI/CD
 Parameterize all environment‑specific settings
@@ -154,7 +156,7 @@ Store secrets in Key Vault
 Run integration tests using a test Service Bus namespace
 
 
-Monitoring & Observability
+## Monitoring & Observability
 Using Application Insights, the system captures:
 
 Request logs
@@ -163,10 +165,10 @@ Correlation IDs
 Exception telemetry
 Custom dimensions (topic, blob name, container name)
 
-Sample KQL Query
+### Sample KQL Query
 KQLtraces| where customDimensions.TopicName == "620-621-Messages"| order by timestamp descShow more lines
 
-Error Handling
+### Error Handling
 Each function includes structured exception handling for:
 
 StorageException
@@ -181,7 +183,7 @@ Blob/container names
 Exception details
 
 
-Scalability
+### Scalability
 Azure Functions automatically scale based on message volume.
 Using two separate storage accounts ensures:
 
@@ -189,9 +191,9 @@ Lower throttling risk
 Distributed load
 Improved performance isolation
 
-Consumption or Premium plans recommended.
+### Consumption or Premium plans recommended.
 
-Extensibility
+## Extensibility
 To add additional topics:
 
 Create a new Function trigger
