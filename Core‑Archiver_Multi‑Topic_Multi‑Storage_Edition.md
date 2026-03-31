@@ -31,3 +31,30 @@ It provides **durable, scalable, and fully traceable long‑term archiving** of 
 2. Each topic is handled by its own Azure Function trigger.
 3. Each trigger uses a dedicated **BlobServiceClient** mapped to its storage account.
 4. Messages are archived into containers partitioned by:
+   yyyyMMdd + riceId + topicPrefix
+5. Message content is uploaded as UTF‑8 with metadata.
+6. Application Insights captures logs, correlation IDs, exceptions, and performance details.
+
+---
+
+## Key Features
+
+### ✔ Multi‑Topic Support
+- Each topic has its own Function trigger.  
+- Independent scaling, isolation, error handling, and observability.
+
+### ✔ Multi‑Storage Support
+- Each topic archives to its own Storage Account.  
+- Reduces contention and provides workload isolation.
+
+### ✔ Consistent Archival Pipeline
+Shared logic across all triggers:
+- Correlation ID extraction  
+- Container naming  
+- Blob naming  
+- Metadata injection  
+- App Insights instrumentation  
+
+---
+
+## Project Structure
