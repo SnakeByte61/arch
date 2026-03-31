@@ -31,12 +31,12 @@ The extension solves this by replacing compile-time trigger attributes with the 
 │  │ ServiceBusArchiveHostedService (new)                            │  │
 │  │                                                                 │  │
 │  │  TopicMappingRegistry                                           │  │
-│  │  ┌─────────────────────────────────────────────────────────┐   │  │
-│  │  │ Topic A → BlobArchiveService → Storage Account A        │   │  │
-│  │  │ Topic B → BlobArchiveService → Storage Account B        │   │  │
-│  │  │ Topic C → BlobArchiveService → Storage Account C        │   │  │
-│  │  │  ...up to N topics...                                   │   │  │
-│  │  └─────────────────────────────────────────────────────────┘   │  │
+│  │  ┌─────────────────────────────────────────────────────────┐    │  │
+│  │  │ Topic A → BlobArchiveService → Storage Account A        │    │  │
+│  │  │ Topic B → BlobArchiveService → Storage Account B        │    │  │
+│  │  │ Topic C → BlobArchiveService → Storage Account C        │    │  │
+│  │  │  ...up to N topics...                                   │    │  │
+│  │  └─────────────────────────────────────────────────────────┘    │  │
 │  │                                                                 │  │
 │  │  One ServiceBusProcessor per topic (started at App startup)     │  │
 │  └─────────────────────────────────────────────────────────────────┘  │
